@@ -8,7 +8,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
  * @author Miguel Guilherme
  */
 @Configuration
-public class SchedulerConfig {
+public class SchedulerConfiguration {
 
     @Bean
     public ThreadPoolTaskScheduler threadPoolTaskScheduler() {
