@@ -1,5 +1,9 @@
 package com.guilherme.miguel.domain;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -7,6 +11,7 @@ import java.util.Date;
  * @author Miguel Guilherme
  */
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Action {
 
     @Id
@@ -15,14 +20,11 @@ public class Action {
 
     private String name;
 
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
+    @CreatedDate
     private Date createdDate;
 
-    @Version
-    private Date updatedDate;
-
-    private Action() {
-    }
+    @LastModifiedDate
+    private Date lastModifiedDate;
 
     public Action(String name) {
         this.name = name;
@@ -50,5 +52,13 @@ public class Action {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
     }
 }
