@@ -50,15 +50,17 @@ public class Action {
         return createdDate;
     }
 
-//    public void setCreatedDate(Date createdDate) {
-//        this.createdDate = createdDate;
-//    }
-
     public Date getLastModifiedDate() {
         return lastModifiedDate;
     }
 
-//    public void setLastModifiedDate(Date lastModifiedDate) {
-//        this.lastModifiedDate = lastModifiedDate;
-//    }
+    @Override
+    public String toString() {
+        return "Action{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", createdDate=" + createdDate +
+                ", lastModifiedDate=" + lastModifiedDate +
+                '}';
+    }
 }
