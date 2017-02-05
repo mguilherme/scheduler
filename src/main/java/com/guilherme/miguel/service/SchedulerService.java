@@ -31,8 +31,13 @@ public class SchedulerService {
     }
 
     public boolean add(String name) {
+        if (threadPool.containsKey(name)) {
+            logger.info("{} already added", name);
+            return false;
+        }
+
         ScheduledFuture scheduledFuture = threadPoolTaskScheduler.scheduleAtFixedRate(
-                () -> logger.info("Running " + name),
+                () -> logger.info("Running {}", name),
                 5000);
 
         threadPool.put(name, scheduledFuture);
@@ -42,7 +47,7 @@ public class SchedulerService {
 
     public boolean remove(String name) {
         if (!threadPool.containsKey(name)) {
-            logger.info(name + " not found...");
+            logger.info("{} not found...", name);
             return false;
         }
 
@@ -52,7 +57,7 @@ public class SchedulerService {
         if (scheduledFuture.isCancelled()) {
             threadPool.remove(name);
             actionRepository.deleteByName(name);
-            logger.info(name + " removed...");
+            logger.info("{} removed...", name);
             return true;
         }
         return false;
