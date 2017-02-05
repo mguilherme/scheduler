@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static java.lang.String.format;
+
 /**
  * @author Miguel Guilherme
  */
@@ -24,13 +26,13 @@ public class HomeController {
     @RequestMapping(value = "/add/{name}")
     public String add(@PathVariable String name) {
         boolean added = schedulerService.add(name);
-        return name + (added ? "" : " not") + " added";
+        return format("%s %s added", name, (added ? "" : " not"));
     }
 
     @RequestMapping(value = "/remove/{name}")
     public String remove(@PathVariable String name) {
         boolean removed = schedulerService.remove(name);
-        return name + (removed ? "" : " not") + " removed";
+        return format("%s %s removed", name, (removed ? "" : " not"));
     }
 
 }

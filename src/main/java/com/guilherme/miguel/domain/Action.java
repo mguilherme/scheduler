@@ -26,6 +26,9 @@ public class Action {
     @LastModifiedDate
     private Date lastModifiedDate;
 
+    public Action() {
+    }
+
     public Action(String name) {
         this.name = name;
     }
